@@ -29,6 +29,9 @@
     "bc3bot-e2e": {
       "tags": [],
       "implicitDependencies": ["bc3bot"]
+    },
+    "bc3bot-api": {
+      "tags": []
     }
   }
 }

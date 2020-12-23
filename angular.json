@@ -53,7 +53,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bc3bot:build"
+            "browserTarget": "bc3bot:build",
+            "proxyConfig": "apps/bc3bot/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -108,6 +109,57 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/bc3bot-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "bc3bot-api": {
+      "root": "apps/bc3bot-api",
+      "sourceRoot": "apps/bc3bot-api/src",
+      "projectType": "application",
+      "prefix": "bc3bot-api",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/bc3bot-api",
+            "main": "apps/bc3bot-api/src/main.ts",
+            "tsConfig": "apps/bc3bot-api/tsconfig.app.json",
+            "assets": ["apps/bc3bot-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/bc3bot-api/src/environments/environment.ts",
+                  "with": "apps/bc3bot-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "bc3bot-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/bc3bot-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/bc3bot-api"],
+          "options": {
+            "jestConfig": "apps/bc3bot-api/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
