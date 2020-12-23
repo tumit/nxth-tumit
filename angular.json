@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "projects": {
+    "bc3bot": {
+      "projectType": "application",
+      "root": "apps/bc3bot",
+      "sourceRoot": "apps/bc3bot/src",
+      "prefix": "nxth-tumit",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/bc3bot",
+            "index": "apps/bc3bot/src/index.html",
+            "main": "apps/bc3bot/src/main.ts",
+            "polyfills": "apps/bc3bot/src/polyfills.ts",
+            "tsConfig": "apps/bc3bot/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/bc3bot/src/favicon.ico", "apps/bc3bot/src/assets"],
+            "styles": ["apps/bc3bot/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/bc3bot/src/environments/environment.ts",
+                  "with": "apps/bc3bot/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "bc3bot:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "bc3bot:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bc3bot:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/bc3bot/src/**/*.ts",
+              "apps/bc3bot/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/bc3bot"],
+          "options": {
+            "jestConfig": "apps/bc3bot/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "bc3bot-e2e": {
+      "root": "apps/bc3bot-e2e",
+      "sourceRoot": "apps/bc3bot-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/bc3bot-e2e/cypress.json",
+            "tsConfig": "apps/bc3bot-e2e/tsconfig.e2e.json",
+            "devServerTarget": "bc3bot:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "bc3bot:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/bc3bot-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "bc3bot"
+}
