@@ -161,14 +161,6 @@
             "jestConfig": "apps/bc3bot-api/jest.config.js",
             "passWithNoTests": true
           }
-        },
-        "deploy": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              "now --prod --token $ZEIT_TOKEN"
-            ]
-          }
         }
       }
     }

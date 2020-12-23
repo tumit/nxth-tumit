@@ -1,8 +1,8 @@
 {
     "version": 2,
     "builds": [
-        { "src": "/dist/apps/bc3bot-api/main.js", "use": "@now/node" },
-        { "src": "/dist/apps/bc3bot/*", "use": "@now/static" }
+        { "src": "/dist/apps/bc3bot-api/main.js", "use": "@vercel/node" },
+        { "src": "/dist/apps/bc3bot/*", "use": "@vercel/static" }
     ],
     "routes": [
         { "src": "/api/(.*)", "dest": "/dist/apps/bc3bot-api/main.js" },
