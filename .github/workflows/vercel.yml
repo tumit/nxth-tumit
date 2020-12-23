@@ -20,13 +20,12 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - shell: bash
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          example-command "$VERCEL_TOKEN"
+    - shell: bash
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      run: |
+        example-command "$VERCEL_TOKEN"
 
-    steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
