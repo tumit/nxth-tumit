@@ -26,7 +26,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "vercel:deploy": "nx affected --target=build --prod --base=remotes/origin/main && vercel --prod --token $VERCEL_TOKEN"
+    "vercel:deploy": "nx affected --target=build --all --prod --base=remotes/origin/main && vercel --prod --token $VERCEL_TOKEN"
   },
   "private": true,
   "dependencies": {
