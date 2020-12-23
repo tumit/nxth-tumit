@@ -21,6 +21,8 @@ jobs:
       with:
         fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
