@@ -32,6 +32,9 @@
     },
     "bc3bot-api": {
       "tags": []
+    },
+    "bc3bot-data": {
+      "tags": []
     }
   }
 }

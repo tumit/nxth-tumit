@@ -126,7 +126,7 @@
             "outputPath": "dist/apps/bc3bot-api",
             "main": "apps/bc3bot-api/src/main.ts",
             "tsConfig": "apps/bc3bot-api/tsconfig.app.json",
-            "assets": ["apps/bc3bot-api/src/assets"]
+            "assets": ["apps/bc3bot-api/src/assets", "apps/bc3bot-api/src/views"]
           },
           "configurations": {
             "production": {
@@ -159,6 +159,27 @@
           "outputs": ["coverage/apps/bc3bot-api"],
           "options": {
             "jestConfig": "apps/bc3bot-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "bc3bot-data": {
+      "root": "libs/bc3bot-data",
+      "sourceRoot": "libs/bc3bot-data/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/bc3bot-data/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/bc3bot-data"],
+          "options": {
+            "jestConfig": "libs/bc3bot-data/jest.config.js",
             "passWithNoTests": true
           }
         }
