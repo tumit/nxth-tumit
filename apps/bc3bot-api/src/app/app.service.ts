@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ChatRequest, ChatResponse } from '@nxth-tumit/bc3bot-data';
+import { ChatRequest } from '@nxth-tumit/bc3bot-data';
 import { FaunadbService, query as q, Client, values } from 'nestjs-faunadb';
 import { from, Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class AppService {
     );
   }
 
-  async getFaunaDbData(trigger: string): Promise<{ data: []}> {
+  async getFaunaDbData(trigger: string): Promise<{ data: string[]}> {
     const query = q.Paginate(
       q.Match(q.Index('responses_by_triggers'), trigger)
     );
