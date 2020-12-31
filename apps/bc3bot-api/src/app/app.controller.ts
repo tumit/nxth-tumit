@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
 
 import { AppService } from './app.service';
 import { ChatRequest } from '@nxth-tumit/bc3bot-data';
@@ -9,8 +9,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getData() {
-    return this.appService.getData({ command: 'สวย' });
+  getChat(@Query('trigger') trigger) {
+    return this.appService.getData({ command: trigger });
   }
 
   @Post()

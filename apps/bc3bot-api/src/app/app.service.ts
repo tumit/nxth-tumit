@@ -16,7 +16,8 @@ export class AppService {
   getData(req: ChatRequest): Observable<string> {
     return from(this.getFaunaDbData(req.command)).pipe(
       filter( r => r?.data?.length > 0),
-      map(r => (r?.data[0]))
+      map(r => (r?.data[0])),
+      map(s => (s.replace(/\\n/g, "<br>")))
     );
   }
 
